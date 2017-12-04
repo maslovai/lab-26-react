@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { say } from 'cowsay';
-
+import faker from 'faker';
 // console.log(say({ text: 'grazing in the browser' }));
 
 import './style/main.scss';
@@ -24,7 +24,7 @@ class App extends React.Component{
 
         this.state = {
             content: say({
-            text: 'Moo'
+            text: "Moo"
         })
     }
 }
@@ -32,7 +32,7 @@ class App extends React.Component{
     generateSay(){
         this.setState({
             content: say({
-            text:"new Moo"
+            text:(faker.fake("{{lorem.paragraph}}"))
         })
       })
     }
