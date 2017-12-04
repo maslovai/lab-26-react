@@ -1,12 +1,10 @@
-import {React} from 'react';
-import{ReactDom} from 'react-dom';
+import React from 'react';
+import ReactDom from 'react-dom';
+import { say } from 'cowsay';
 
-class App extends React.Component{
-    render(){
+// console.log(say({ text: 'grazing in the browser' }));
 
-    }
-}
-ReactDom.render(<App/>, document.getElementById('root'));
+import './style/main.scss';
 
 class Header extends React.Component{
     render(){
@@ -17,3 +15,40 @@ class Header extends React.Component{
         )
     }
 }
+
+class App extends React.Component{
+    constructor(props){
+        super(props);
+
+        this.generateSay = this.generateSay.bind(this);
+
+        this.state = {
+            content: say({
+            text: 'Moo'
+        })
+    }
+}
+
+    generateSay(){
+        this.setState({
+            content: say({
+            text:"new Moo"
+        })
+      })
+    }
+
+    render(){
+    return (
+        <div>
+            <div id="cowhouse">
+                <Header />
+                <pre>{this.state.content}</pre>
+                <button onClick={this.generateSay}>click me</button>
+            </div>
+        </div>
+    )
+    }   
+}
+
+
+ReactDom.render(<App/>, document.getElementById('root'));
